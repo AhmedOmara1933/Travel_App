@@ -2,8 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:travelea_app/modules/travel_homepage.dart';
 import 'package:travelea_app/shared/components/components.dart';
 
+import '../models/data_model.dart';
+
 class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({super.key});
+   DetailsScreen({super.key,required this.data});
+  Data data;
+
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +48,9 @@ class DetailsScreen extends StatelessWidget {
             ),
             height: 400.0,
             width: double.infinity,
-            child: const Image(
+            child:  Image(
               image: AssetImage(
-                'images/7.jpg'
+                '${data.image}'
               ),
               fit: BoxFit.cover,
             ),
@@ -93,8 +97,8 @@ class DetailsScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                child: const Text(
-                  'Explore Cities',
+                child:  Text(
+                 '${data.name}',
                   style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
                 ),
               ),

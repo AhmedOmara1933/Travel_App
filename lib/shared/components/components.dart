@@ -83,7 +83,9 @@ Data data;
     // TODO: implement build
     return GestureDetector(
       onTap: (){
-       Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailsScreen() ,));
+       Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailsScreen(
+         data: data,
+       ) ,));
       },
       child: Container(
         margin: EdgeInsets.only(right: 30.0),
