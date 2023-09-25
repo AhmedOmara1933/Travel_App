@@ -11,6 +11,7 @@ class TravelHomePage extends StatefulWidget {
 }
 
 class _TravelHomePageState extends State<TravelHomePage> {
+  int currentIndex=2;
   List miniCard = [
     ['images/mountain.png', 'Mountain', true],
     ['images/beach.png', 'Beach', false],
@@ -24,10 +25,10 @@ class _TravelHomePageState extends State<TravelHomePage> {
     ['High rated', false],
   ];
   List circleAvatars = [
-    ['images/Screenshot 2023-09-25 162313.png', 'Flight', false],
-    ['images/Screenshot 2023-09-25 162313.png', 'Hotels', true],
-    ['images/Screenshot 2023-09-25 162313.png', 'Transports', false],
-    ['images/Screenshot 2023-09-25 162313.png', 'Events', false],
+    ['images/travelling.png', 'Flight', false],
+    ['images/hotel.png', 'Hotels', true],
+    ['images/delivery-truck.png', 'Transports', false],
+    ['images/people.png', 'Events', false],
   ];
 
   DataModel ?dataModel;
@@ -52,6 +53,12 @@ class _TravelHomePageState extends State<TravelHomePage> {
           horizontal: 20.0
         ),
         child: BottomNavigationBar(
+          currentIndex:currentIndex ,
+          onTap: (value){
+            setState(() {
+              currentIndex=value;
+            });
+          },
           selectedItemColor: Color(0xffb55925),
           selectedIconTheme: IconThemeData(
             size: 30.0
@@ -89,6 +96,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //appBar
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -152,6 +160,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                     )),
               ],
             ),
+            //search
             Container(
               margin: const EdgeInsets.symmetric(vertical: 30.0),
               padding: const EdgeInsets.only(left: 15.0, right: 15.0),
@@ -186,6 +195,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                 ],
               ),
             ),
+            //miniCard
             SizedBox(
               height: 65.0,
               child: ListView.separated(
@@ -208,6 +218,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                       ),
                   itemCount: miniCard.length),
             ),
+            //text
             Container(
               margin: const EdgeInsets.only(top: 35.0, bottom: 13.0),
               child: const Text(
@@ -215,6 +226,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
               ),
             ),
+            //many of texts
             Container(
               margin: const EdgeInsets.only(bottom: 25.0),
               height: 30.0,
@@ -237,6 +249,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                       ),
                   itemCount: texts.length),
             ),
+            // big card
             Container(
               margin: const EdgeInsets.only(bottom: 35.0),
               height: 190.0,
@@ -248,6 +261,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                 itemCount: dataModel!.data!.length,
               ),
             ),
+            //text
             Container(
               margin: const EdgeInsets.only(
                 bottom: 20.0,
@@ -257,6 +271,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                 style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
               ),
             ),
+            //category
             SizedBox(
               height: 90.0,
               child: ListView.separated(

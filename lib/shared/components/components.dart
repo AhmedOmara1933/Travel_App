@@ -49,6 +49,8 @@ class DefaultMiniCard extends StatelessWidget {
   }
 }
 
+///////////////////////////////////////////todo////////////////////////////////////////////
+
 class DefaultTexts extends StatelessWidget {
   final String text;
   final bool isSelected;
@@ -72,6 +74,9 @@ class DefaultTexts extends StatelessWidget {
     );
   }
 }
+
+///////////////////////////////////////////todo////////////////////////////////////////////
+
 
 class DefaultCard extends StatelessWidget {
 Data data;
@@ -185,6 +190,9 @@ Data data;
   }
 }
 
+///////////////////////////////////////////todo////////////////////////////////////////////
+
+
 class DefaultCircleAvatar extends StatelessWidget {
   final String image;
   final String text;
@@ -211,6 +219,7 @@ class DefaultCircleAvatar extends StatelessWidget {
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(200.0),
+              color: Colors.white
             ),
             child: Image(
               image: AssetImage(
@@ -233,15 +242,7 @@ class DefaultCircleAvatar extends StatelessWidget {
   }
 }
 
-Widget assetsImage(String image, {Color? color}) {
-  return Image(
-    image: AssetImage(
-      'images/$image',
-    ),
-    color: color,
-  );
-}
-
+///////////////////////////////////////////todo////////////////////////////////////////////
 
 class Circle extends StatelessWidget{
   final String text;
@@ -279,4 +280,15 @@ class Circle extends StatelessWidget{
     );
   }
 
+}
+
+///////////////////////////////////////////todo////////////////////////////////////////////
+
+Widget assetsImage(String image, {Color? color}) {
+  return Image(
+    image: AssetImage(
+      'images/$image',
+    ),
+    color: color,
+  );
 }
