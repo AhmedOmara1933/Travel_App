@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:like_button/like_button.dart';
 
 import '../../models/data_model.dart';
+import '../../modules/details_screen.dart';
 
 class DefaultMiniCard extends StatelessWidget {
   final String image;
@@ -82,7 +83,7 @@ Data data;
     // TODO: implement build
     return GestureDetector(
       onTap: (){
-        Data data;
+       Navigator.push(context, MaterialPageRoute(builder: (context) =>DetailsScreen() ,));
       },
       child: Container(
         margin: EdgeInsets.only(right: 30.0),
