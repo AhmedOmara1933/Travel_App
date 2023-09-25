@@ -202,8 +202,8 @@ class DefaultCircleAvatar extends StatelessWidget {
   DefaultCircleAvatar(
       {super.key,
       required this.image,
-      required this.text,
-      required this.isSelected,
+       required this.text,
+       required this.isSelected,
       required this.onTap});
 
   @override
@@ -232,9 +232,9 @@ class DefaultCircleAvatar extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-            text,
+            text!,
             style: TextStyle(
-                fontSize: 15.0, color: isSelected ? Colors.black : Colors.grey),
+                fontSize: 15.0, color: isSelected! ? Colors.black : Colors.grey),
           )
         ],
       ),
@@ -291,4 +291,93 @@ Widget assetsImage(String image, {Color? color}) {
     ),
     color: color,
   );
+}
+Widget text(String text) {
+  return const Text(
+    'Popular Categories',
+    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
+  );
+}
+
+///////////////////////////////////////////todo////////////////////////////////////////////
+
+class MySearch extends StatelessWidget{
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 30.0),
+      padding: const EdgeInsets.only(left: 15.0, right: 15.0),
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0)),
+      height: 55.0,
+      width: double.infinity,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              const Icon(
+                Icons.search,
+                color: Color(0xffb95b2b),
+                size: 25.0,
+              ),
+              const SizedBox(
+                width: 8.0,
+              ),
+              Text(
+                'Discover a city',
+                style:
+                TextStyle(fontSize: 17.0, color: Colors.grey[400]),
+              ),
+            ],
+          ),
+          SizedBox(
+              height: 30.0,
+              child: assetsImage('tune.png', color: Colors.grey[400]))
+        ],
+      ),
+    );
+  }
+
+}
+
+///////////////////////////////////////////todo////////////////////////////////////////////
+
+class MyBottom extends StatelessWidget{
+  final String text;
+  final Color isColor;
+  final Color isText;
+  final VoidCallback onPressed;
+
+  MyBottom({super.key, required this.text,required this.isColor,required this.onPressed, required this.isText,});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return  Container(
+      padding: const EdgeInsets.symmetric(
+          horizontal:20.0,
+          vertical: 5.0
+      ),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.0),
+          border: Border.all(
+              color: const Color(0xffb95b2b)
+          ),
+        // color: isSelected?Color(0xffb95b2b):Color(0xfff3f3f3)
+        color: isColor
+      ),
+      child: MaterialButton(
+        onPressed: onPressed,
+        child:  Text(
+          text,style:  TextStyle(
+            color:isText
+        ),
+        ),
+
+      ),
+    );
+  }
 }

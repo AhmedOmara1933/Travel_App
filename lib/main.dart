@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travelea_app/modules/welcome_screen.dart';
 
-import 'modules/details_screen.dart';
-import 'modules/travel_homepage.dart';
-
 void main() {
   runApp(const MyApp());
 }
@@ -16,7 +13,10 @@ class MyApp extends StatelessWidget {
     return SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home:WelcomeScreen(),
+        theme: ThemeData(
+          scaffoldBackgroundColor: const Color(0xfff3f3f3),
+        ),
+        home: WelcomeScreen(),
       ),
     );
   }

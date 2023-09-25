@@ -4,31 +4,48 @@ import 'package:travelea_app/shared/components/components.dart';
 
 import '../models/data_model.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
    DetailsScreen({super.key,required this.data});
   Data data;
 
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
+  bool isClicable=true;
+  List miniCard=[
+    ['Maps','images/map.png'],
+    ['Guide','images/tour-guide.png'],
+    ['4 day 3 night','images/moon.png'],
+    [ 'Dinner','images/dinner.png'],
+  ];
 
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(
+            top: 20.0,
+          left: 20.0,
+          right: 20.0,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-           Row(
+          //back
+          Row(
             children: [
               GestureDetector(
                 onTap: (){
                   Navigator.push(context,MaterialPageRoute(
-                      builder: (context) =>TravelHomePage()));
+                      builder: (context) =>const TravelHomePage()));
                 },
-                  child: Icon(
+                  child: const Icon(
                       Icons.arrow_back_outlined
                   )
               ),
-              Text(
+              const Text(
                 'Back'
               )
 
@@ -37,11 +54,11 @@ class DetailsScreen extends StatelessWidget {
           const SizedBox(
             height: 20.0,
           ),
+          //image
           Container(
             margin: const EdgeInsets.only(
               bottom: 10.0
             ),
-
             clipBehavior: Clip.antiAliasWithSaveLayer,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0)
@@ -50,40 +67,28 @@ class DetailsScreen extends StatelessWidget {
             width: double.infinity,
             child:  Image(
               image: AssetImage(
-                '${data.image}'
+                '${widget.data.image}'
               ),
               fit: BoxFit.cover,
             ),
           ),
-          Row(
-            children: [
-              Circle(
-                  text: 'Maps',
-                  image: 'images/Screenshot 2023-09-25 162313.png'
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              Circle(
-                  text: 'Guide',
-                  image: 'images/Screenshot 2023-09-25 162313.png'
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              Circle(
-                  text: '4 day 3 night',
-                  image: 'images/Screenshot 2023-09-25 162313.png'
-              ),
-              const SizedBox(
-                width: 20.0,
-              ),
-              Circle(
-                  text: 'Dinner',
-                  image: 'images/Screenshot 2023-09-25 162313.png'
-              ),
-            ],
-          ),
+          //mini card
+         SizedBox(
+           height:90.0 ,
+           child: ListView.separated(
+             physics: const BouncingScrollPhysics(),
+             scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) => Circle(
+                text:miniCard[index][0] ,
+                image: miniCard[index][1]
+            ),
+               separatorBuilder: (context, index) => const SizedBox(
+                 width: 25.0,
+               ),
+               itemCount: miniCard.length
+           ),
+         ),
+         //divider
          Container(
            margin: const EdgeInsets.symmetric(
              horizontal: 10.0,
@@ -93,14 +98,13 @@ class DetailsScreen extends StatelessWidget {
            height: 1,
 
          ),
+          //texts
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Container(
-                child:  Text(
-                 '${data.name}',
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
-                ),
+              Text(
+               '${widget.data.name}',
+                style: const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
               ),
              const Row(
                children: [
@@ -118,7 +122,7 @@ class DetailsScreen extends StatelessWidget {
              ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 10.0,
           ),
           const Row(
@@ -155,7 +159,7 @@ class DetailsScreen extends StatelessWidget {
             ],
           ),
           Container(
-            margin: EdgeInsets.only(
+            margin: const EdgeInsets.only(
               top: 20.0,
               bottom: 10.0
             ),
@@ -164,64 +168,46 @@ class DetailsScreen extends StatelessWidget {
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w900),
             ),
           ),
-          Text(
-            'The Rolle Pass is a high mountain pass in trentino\n'
-                'in Italy .it connects the fiemme and primiero valleys,\n'
-                'and the communcaties of Predzzo , San Martino di',
+          //rich text
+          const Text(
+            'The Rolled Pass is a high mountain pass in trentino\n'
+                'in Italy .It connects the femme and primer valleys,\n'
+                'and the communications of Predator ',
             style:TextStyle(
               fontSize: 16.0,
               color: Colors.grey
             ),
           ),
+          //two bottoms
           Expanded(
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal:20.0,
-                    vertical: 5.0
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                    border: Border.all(
-                      color: Color(0xffb95b2b)
+                Expanded(
+                    child:MyBottom(
+                        text: '\$890 / person',
+                        isText:!isClicable?Colors.white:const Color(0xffb95b2b),
+                        isColor: !isClicable?const Color(0xffb95b2b):const Color(0xfff3f3f3),
+                        onPressed: (){
+                          setState(() {
+                            isClicable=false;
+                          });
+                        }
                     )
-                  ),
-                  child: MaterialButton(
-                      onPressed: (){
-
-                      },
-                    child: Text(
-                      '\$890 / person',style: TextStyle(
-                      color: Color(0xffb95b2b)
-                    ),
-                    ),
-
-                  ),
                 ),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal:30.0,
-                    vertical: 7.0
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10.0),
-                   color:  Color(0xffb95b2b)
-                  ),
-                  child: MaterialButton(
-                      onPressed: (){
-                      },
-                    child: Text(
-                      'Book Now',
-                      style: TextStyle(
-                      color:Colors.white
-                    ),
-                    ),
+                const SizedBox(width: 20.0,),
+                Expanded(
+                    child:MyBottom(
+                        text: 'Book now',
+                        isText: isClicable?Colors.white:const Color(0xffb95b2b),
+                        isColor: isClicable?const Color(0xffb95b2b):const Color(0xfff3f3f3),
+                        onPressed: (){
+                          setState(() {
 
-                  ),
+                          });
+                          isClicable=true;
+                        }
+                    )
                 ),
-
               ],
             ),
           )

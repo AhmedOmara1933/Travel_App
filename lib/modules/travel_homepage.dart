@@ -4,7 +4,7 @@ import '../models/data_model.dart';
 import '../shared/components/components.dart';
 
 class TravelHomePage extends StatefulWidget {
-  TravelHomePage({super.key});
+  const TravelHomePage({super.key});
 
   @override
   State<TravelHomePage> createState() => _TravelHomePageState();
@@ -42,14 +42,13 @@ class _TravelHomePageState extends State<TravelHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xfff3f3f3),
       bottomNavigationBar: Container(
         clipBehavior: Clip.antiAliasWithSaveLayer,
          decoration: BoxDecoration(
-           color: Color(0xfff3e2d2),
+           color: const Color(0xfff3e2d2),
            borderRadius: BorderRadius.circular(15.0),
          ),
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 20.0
         ),
         child: BottomNavigationBar(
@@ -59,11 +58,11 @@ class _TravelHomePageState extends State<TravelHomePage> {
               currentIndex=value;
             });
           },
-          selectedItemColor: Color(0xffb55925),
-          selectedIconTheme: IconThemeData(
+          selectedItemColor: const Color(0xffb55925),
+          selectedIconTheme: const IconThemeData(
             size: 30.0
           ),
-          unselectedIconTheme: IconThemeData(
+          unselectedIconTheme: const IconThemeData(
             size: 25.0
           ),
           unselectedItemColor: Colors.grey,
@@ -161,40 +160,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
               ],
             ),
             //search
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 30.0),
-              padding: const EdgeInsets.only(left: 15.0, right: 15.0),
-              decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0)),
-              height: 55.0,
-              width: double.infinity,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.search,
-                        color: Color(0xffb95b2b),
-                        size: 25.0,
-                      ),
-                      const SizedBox(
-                        width: 8.0,
-                      ),
-                      Text(
-                        'Discover a city',
-                        style:
-                            TextStyle(fontSize: 17.0, color: Colors.grey[400]),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                      height: 30.0,
-                      child: assetsImage('tune.png', color: Colors.grey[400]))
-                ],
-              ),
-            ),
+            MySearch(),
             //miniCard
             SizedBox(
               height: 65.0,
@@ -221,10 +187,9 @@ class _TravelHomePageState extends State<TravelHomePage> {
             //text
             Container(
               margin: const EdgeInsets.only(top: 35.0, bottom: 13.0),
-              child: const Text(
-                'Explore Cities',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
-              ),
+              child: text(
+                'Explore Cities'
+              )
             ),
             //many of texts
             Container(
@@ -266,10 +231,9 @@ class _TravelHomePageState extends State<TravelHomePage> {
               margin: const EdgeInsets.only(
                 bottom: 20.0,
               ),
-              child: const Text(
-                'Popular Categories',
-                style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
-              ),
+              child: text(
+                 ' Popular Categories'
+              )
             ),
             //category
             SizedBox(
@@ -301,4 +265,3 @@ class _TravelHomePageState extends State<TravelHomePage> {
   }
 }
 
-//functions
