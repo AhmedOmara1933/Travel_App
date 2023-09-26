@@ -57,8 +57,8 @@ class DefaultTexts extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  DefaultTexts(
-      {required this.text, required this.isSelected, required this.onTap});
+  const DefaultTexts(
+      {super.key, required this.text, required this.isSelected, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +82,7 @@ class DefaultTexts extends StatelessWidget {
 class DefaultCard extends StatelessWidget {
 Data data;
 
-  DefaultCard({required this.data});
+  DefaultCard({super.key, required this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -200,7 +200,7 @@ class DefaultCircleAvatar extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  DefaultCircleAvatar(
+  const DefaultCircleAvatar(
       {super.key,
       required this.image,
        required this.text,
@@ -233,9 +233,9 @@ class DefaultCircleAvatar extends StatelessWidget {
             height: 10.0,
           ),
           Text(
-            text!,
+            text,
             style: TextStyle(
-                fontSize: 15.0, color: isSelected! ? Colors.black : Colors.grey),
+                fontSize: 15.0, color: isSelected ? Colors.black : Colors.grey),
           )
         ],
       ),
@@ -249,7 +249,7 @@ class Circle extends StatelessWidget{
   final String text;
   final String image;
 
-  Circle({required this.text,required this.image});
+  const Circle({super.key, required this.text,required this.image});
 
   @override
   Widget build(BuildContext context) {
@@ -354,7 +354,7 @@ class MyBottom extends StatelessWidget{
   final Color isText;
   final VoidCallback onPressed;
 
-  MyBottom({super.key, required this.text,required this.isColor,required this.onPressed, required this.isText,});
+  const MyBottom({super.key, required this.text,required this.isColor,required this.onPressed, required this.isText,});
 
   @override
   Widget build(BuildContext context) {
@@ -396,7 +396,7 @@ class MyBottomNavigationBar extends StatelessWidget{
   Widget build(BuildContext context) {
     // TODO: implement build
     return  Container(
-     margin: EdgeInsets.symmetric(
+     margin: const EdgeInsets.symmetric(
        horizontal: 20.0,
      ),
       clipBehavior: Clip.antiAliasWithSaveLayer,
