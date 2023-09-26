@@ -30,8 +30,8 @@ class _TravelHomePageState extends State<TravelHomePage> {
     ['images/delivery-truck.png', 'Transports', false],
     ['images/people.png', 'Events', false],
   ];
-
   DataModel ?dataModel;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -42,60 +42,20 @@ class _TravelHomePageState extends State<TravelHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Container(
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-         decoration: BoxDecoration(
-           color: const Color(0xfff3e2d2),
-           borderRadius: BorderRadius.circular(15.0),
-         ),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 20.0
-        ),
-        child: BottomNavigationBar(
-          currentIndex:currentIndex ,
-          onTap: (value){
-            setState(() {
-              currentIndex=value;
-            });
-          },
-          selectedItemColor: const Color(0xffb55925),
-          selectedIconTheme: const IconThemeData(
-            size: 30.0
-          ),
-          unselectedIconTheme: const IconThemeData(
-            size: 25.0
-          ),
-          unselectedItemColor: Colors.grey,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home,),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.adjust_rounded,),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings,),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite_border),
-              label: ''
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              label: ''
-            ),
-          ],
-        ),
+      bottomNavigationBar:MyBottomNavigationBar(
+        currentIndex:currentIndex ,
+        onTap: (value){
+          setState(() {
+            currentIndex=value;
+          });
+        },
       ),
       body: Padding(
         padding: const EdgeInsets.all(25.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
           children: [
-            //appBar
+          //appBar
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -103,7 +63,7 @@ class _TravelHomePageState extends State<TravelHomePage> {
                   children: [
                     Container(
                       margin: const EdgeInsets.only(right: 15.0),
-                      height: 60.0,
+                      height: 55.0,
                       width: 60.0,
                       clipBehavior: Clip.antiAliasWithSaveLayer,
                       decoration: BoxDecoration(
@@ -148,8 +108,8 @@ class _TravelHomePageState extends State<TravelHomePage> {
                   ],
                 ),
                 Container(
-                    height: 50.0,
-                    width: 50.0,
+                    height: 45.0,
+                    width: 45.0,
                     decoration: const BoxDecoration(
                         shape: BoxShape.circle, color: Color(0xffebcdad)),
                     child: const Icon(
@@ -160,60 +120,60 @@ class _TravelHomePageState extends State<TravelHomePage> {
               ],
             ),
             //search
-            MySearch(),
+            const MySearch(),
             //miniCard
             SizedBox(
               height: 65.0,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => DefaultMiniCard(
-                        image: miniCard[index][0],
-                        text: miniCard[index][1],
-                        isSelected: miniCard[index][2],
-                        onTap: () {
-                          setState(() {
-                            for (int i = 0; i < miniCard.length; i++) {
-                              miniCard[i][2] = false;
-                            }
-                            miniCard[index][2] = true;
-                          });
-                        },
-                      ),
+                    image: miniCard[index][0],
+                    text: miniCard[index][1],
+                    isSelected: miniCard[index][2],
+                    onTap: () {
+                      setState(() {
+                        for (int i = 0; i < miniCard.length; i++) {
+                          miniCard[i][2] = false;
+                        }
+                        miniCard[index][2] = true;
+                      });
+                    },
+                  ),
                   separatorBuilder: (context, index) => const SizedBox(
-                        width: 15.0,
-                      ),
+                    width: 15.0,
+                  ),
                   itemCount: miniCard.length),
             ),
             //text
             Container(
-              margin: const EdgeInsets.only(top: 35.0, bottom: 13.0),
-              child: text(
-                'Explore Cities'
-              )
+                margin: const EdgeInsets.only(top: 35.0, bottom: 13.0),
+                child: text(
+                    'Explore Cities'
+                )
             ),
             //many of texts
             Container(
-              margin: const EdgeInsets.only(bottom: 25.0),
+              margin: const EdgeInsets.only(bottom: 20.0),
               height: 30.0,
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => DefaultTexts(
-                        text: texts[index][0],
-                        isSelected: texts[index][1],
-                        onTap: () {
-                          //  texts[index][1] = trueليه اما بخلي ال
-                          //الاول مبتشتغلش
-                          setState(() {
-                            for (int i = 0; i < texts.length; i++) {
-                              texts[i][1] = false;
-                              texts[index][1] = true;
-                            }
-                          });
-                        },
-                      ),
+                    text: texts[index][0],
+                    isSelected: texts[index][1],
+                    onTap: () {
+                      //  texts[index][1] = trueليه اما بخلي ال
+                      //الاول مبتشتغلش
+                      setState(() {
+                        for (int i = 0; i < texts.length; i++) {
+                          texts[i][1] = false;
+                          texts[index][1] = true;
+                        }
+                      });
+                    },
+                  ),
                   separatorBuilder: (context, index) => const SizedBox(
-                        width: 15.0,
-                      ),
+                    width: 15.0,
+                  ),
                   itemCount: texts.length),
             ),
             // big card
@@ -230,12 +190,12 @@ class _TravelHomePageState extends State<TravelHomePage> {
             ),
             //text
             Container(
-              margin: const EdgeInsets.only(
-                bottom: 20.0,
-              ),
-              child: text(
-                 ' Popular Categories'
-              )
+                margin: const EdgeInsets.only(
+                  bottom: 20.0,
+                ),
+                child: text(
+                    ' Popular Categories'
+                )
             ),
             //category
             SizedBox(
@@ -243,21 +203,21 @@ class _TravelHomePageState extends State<TravelHomePage> {
               child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context, index) => DefaultCircleAvatar(
-                        image: circleAvatars[index][0],
-                        text: circleAvatars[index][1],
-                        isSelected: circleAvatars[index][2],
-                        onTap: () {
-                          setState(() {
-                            for (int i = 0; i < circleAvatars.length; i++) {
-                              circleAvatars[i][2] = false;
-                            }
-                            circleAvatars[index][2] = true;
-                          });
-                        },
-                      ),
+                    image: circleAvatars[index][0],
+                    text: circleAvatars[index][1],
+                    isSelected: circleAvatars[index][2],
+                    onTap: () {
+                      setState(() {
+                        for (int i = 0; i < circleAvatars.length; i++) {
+                          circleAvatars[i][2] = false;
+                        }
+                        circleAvatars[index][2] = true;
+                      });
+                    },
+                  ),
                   separatorBuilder: (context, index) => const SizedBox(
-                        width: 35.0,
-                      ),
+                    width: 35.0,
+                  ),
                   itemCount: circleAvatars.length),
             )
           ],

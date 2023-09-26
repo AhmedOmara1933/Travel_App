@@ -10,7 +10,7 @@ class DefaultMiniCard extends StatelessWidget {
   final VoidCallback onTap;
   final bool isSelected;
 
-  DefaultMiniCard({
+  const DefaultMiniCard({super.key,
     required this.image,
     required this.text,
     required this.onTap,
@@ -26,14 +26,15 @@ class DefaultMiniCard extends StatelessWidget {
         width: 140.0,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10.0),
-            color: isSelected! ? const Color(0xffb95b2b) : Colors.white),
+            color: isSelected ? const Color(0xffb95b2b) : Colors.white),
         child: Row(
           children: [
             Container(
                 margin: const EdgeInsets.all(8.0),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    color: Colors.white),
+                    color:isSelected?Colors.white:const Color(0xfff3f3f3)
+                ),
                 child: Image(
                   image: AssetImage(image),
                 )),
@@ -93,7 +94,7 @@ Data data;
        ) ,));
       },
       child: Container(
-        margin: EdgeInsets.only(right: 30.0),
+        margin: const EdgeInsets.only(right: 30.0),
         width: 200.0,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10.0),
@@ -125,16 +126,16 @@ Data data;
                 ],
               ),
                Padding(
-                padding: EdgeInsets.symmetric(vertical: 7.0),
+                padding: const EdgeInsets.symmetric(vertical: 7.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       '${data.name}',
                       style:
-                          TextStyle(fontWeight: FontWeight.w900, fontSize: 15.0),
+                          const TextStyle(fontWeight: FontWeight.w900, fontSize: 15.0),
                     ),
-                    Row(
+                    const Row(
                       children: [
                         Icon(
                           Icons.star_border,
@@ -270,7 +271,7 @@ class Circle extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10.0,
         ),
         Text(
@@ -293,15 +294,17 @@ Widget assetsImage(String image, {Color? color}) {
   );
 }
 Widget text(String text) {
-  return const Text(
-    'Popular Categories',
-    style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
+  return  Text(
+    text ,
+    style: const TextStyle(fontSize: 25.0, fontWeight: FontWeight.w900),
   );
 }
 
 ///////////////////////////////////////////todo////////////////////////////////////////////
 
 class MySearch extends StatelessWidget{
+  const MySearch({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -311,7 +314,7 @@ class MySearch extends StatelessWidget{
       decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(10.0)),
-      height: 55.0,
+      height: 60.0,
       width: double.infinity,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -380,4 +383,63 @@ class MyBottom extends StatelessWidget{
       ),
     );
   }
+}
+
+///////////////////////////////////////////todo////////////////////////////////////////////
+
+class MyBottomNavigationBar extends StatelessWidget{
+  final int currentIndex;
+  final void Function(int)? onTap;
+  const MyBottomNavigationBar({super.key, required this.currentIndex, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    return  Container(
+     margin: EdgeInsets.symmetric(
+       horizontal: 20.0,
+     ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: BottomNavigationBar(
+        backgroundColor:const Color(0xfff3e2d2),
+        type: BottomNavigationBarType.fixed,
+        currentIndex:currentIndex ,
+        onTap: onTap,
+        selectedItemColor: const Color(0xffb55925),
+        selectedIconTheme: const IconThemeData(
+            size: 30.0
+        ),
+        unselectedIconTheme: const IconThemeData(
+            size: 25.0
+        ),
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.home,),
+              label: ''
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.adjust_rounded,),
+              label: ''
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.settings,),
+              label: ''
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.favorite_border),
+              label: ''
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: ''
+          ),
+        ],
+      ),
+    );
+  }
+
 }
