@@ -201,11 +201,13 @@ class _TravelHomePageState extends State<TravelHomePage> {
                         text: texts[index][0],
                         isSelected: texts[index][1],
                         onTap: () {
+                          //  texts[index][1] = trueليه اما بخلي ال
+                          //الاول مبتشتغلش
                           setState(() {
                             for (int i = 0; i < texts.length; i++) {
                               texts[i][1] = false;
+                              texts[index][1] = true;
                             }
-                            texts[index][1] = true;
                           });
                         },
                       ),
